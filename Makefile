@@ -49,8 +49,8 @@ build: pre-build
 build-release-static: EXTRA_LDFLAGS := -extldflags=-static -s -w
 build-release-static: build
 
-# Regenerates GraphQL files and sqlc code
-generate: generate-backend generate-ui generate-sqlc
+# Regenerates GraphQL files, sqlc code, and Swagger docs
+generate: generate-backend generate-ui generate-sqlc generate-swagger
 
 clean:
 	@ rm -rf stash-box frontend/node_modules frontend/build dist
@@ -63,6 +63,9 @@ generate-ui:
 
 generate-sqlc:
 	sqlc generate
+
+generate-swagger:
+	swag init -g internal/api/rest/server.go -o docs --parseDependency --parseInternal
 
 generate-goverter:
 	go run github.com/jmattheis/goverter/cmd/goverter gen ./internal/converter/gen

@@ -30,6 +30,7 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/riandyrn/otelchi"
 	"github.com/rs/cors"
+	"github.com/stashapp/stash-box/internal/api/rest"
 	"github.com/stashapp/stash-box/internal/auth"
 	"github.com/stashapp/stash-box/internal/config"
 	"github.com/stashapp/stash-box/internal/dataloader"
@@ -199,6 +200,9 @@ func Start(fac service.Factory, ui embed.FS) {
 	if !config.GetIsProduction() {
 		r.Handle("/playground", gqlPlayground.Handler("GraphQL playground", "/graphql"))
 	}
+
+	// Mount REST API
+	r.Mount("/api/v1", rest.SetupRESTRouter(fac, version, githash, buildstamp))
 
 	r.Mount("/", rootRoutes{ui: ui}.Routes(fac))
 

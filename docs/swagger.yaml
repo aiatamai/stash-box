@@ -1,0 +1,3198 @@
+basePath: /api/v1
+definitions:
+  github_com_gofrs_uuid.NullUUID:
+    properties:
+      uuid:
+        type: string
+      valid:
+        type: boolean
+    type: object
+  github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse:
+    properties:
+      code:
+        type: integer
+      details:
+        additionalProperties:
+          type: string
+        type: object
+      error:
+        type: string
+      message:
+        type: string
+    type: object
+  github_com_stashapp_stash-box_internal_api_rest_handlers.PaginatedResponse:
+    properties:
+      data: {}
+      page:
+        type: integer
+      per_page:
+        type: integer
+      total_count:
+        type: integer
+      total_pages:
+        type: integer
+    type: object
+  github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse:
+    properties:
+      data: {}
+    type: object
+  github_com_stashapp_stash-box_internal_models.BodyModificationInput:
+    properties:
+      description:
+        type: string
+      location:
+        type: string
+    type: object
+  github_com_stashapp_stash-box_internal_models.BreastTypeEnum:
+    enum:
+    - NATURAL
+    - FAKE
+    - NA
+    type: string
+    x-enum-varnames:
+    - BreastTypeEnumNatural
+    - BreastTypeEnumFake
+    - BreastTypeEnumNa
+  github_com_stashapp_stash-box_internal_models.Edit:
+    properties:
+      applied:
+        type: boolean
+      bot:
+        type: boolean
+      closed_at:
+        type: string
+      created_at:
+        type: string
+      data:
+        items:
+          type: integer
+        type: array
+      id:
+        type: string
+      operation:
+        type: string
+      status:
+        type: string
+      target_type:
+        type: string
+      update_count:
+        type: integer
+      updated_at:
+        type: string
+      user_id:
+        $ref: '#/definitions/github_com_gofrs_uuid.NullUUID'
+      votes:
+        type: integer
+    type: object
+  github_com_stashapp_stash-box_internal_models.EthnicityEnum:
+    enum:
+    - CAUCASIAN
+    - BLACK
+    - ASIAN
+    - INDIAN
+    - LATIN
+    - MIDDLE_EASTERN
+    - MIXED
+    - OTHER
+    type: string
+    x-enum-varnames:
+    - EthnicityEnumCaucasian
+    - EthnicityEnumBlack
+    - EthnicityEnumAsian
+    - EthnicityEnumIndian
+    - EthnicityEnumLatin
+    - EthnicityEnumMiddleEastern
+    - EthnicityEnumMixed
+    - EthnicityEnumOther
+  github_com_stashapp_stash-box_internal_models.EyeColorEnum:
+    enum:
+    - BLUE
+    - BROWN
+    - GREY
+    - GREEN
+    - HAZEL
+    - RED
+    type: string
+    x-enum-varnames:
+    - EyeColorEnumBlue
+    - EyeColorEnumBrown
+    - EyeColorEnumGrey
+    - EyeColorEnumGreen
+    - EyeColorEnumHazel
+    - EyeColorEnumRed
+  github_com_stashapp_stash-box_internal_models.FingerprintAlgorithm:
+    enum:
+    - MD5
+    - OSHASH
+    - PHASH
+    type: string
+    x-enum-varnames:
+    - FingerprintAlgorithmMd5
+    - FingerprintAlgorithmOshash
+    - FingerprintAlgorithmPhash
+  github_com_stashapp_stash-box_internal_models.FingerprintEditInput:
+    properties:
+      algorithm:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.FingerprintAlgorithm'
+      created:
+        type: string
+      duration:
+        type: integer
+      hash:
+        type: string
+      submissions:
+        type: integer
+      updated:
+        type: string
+      user_ids:
+        items:
+          type: string
+        type: array
+    type: object
+  github_com_stashapp_stash-box_internal_models.FingerprintInput:
+    properties:
+      algorithm:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.FingerprintAlgorithm'
+      duration:
+        type: integer
+      hash:
+        type: string
+      user_ids:
+        description: assumes current user if omitted. Ignored for non-modify Users
+        items:
+          type: string
+        type: array
+    type: object
+  github_com_stashapp_stash-box_internal_models.GenderEnum:
+    enum:
+    - MALE
+    - FEMALE
+    - TRANSGENDER_MALE
+    - TRANSGENDER_FEMALE
+    - INTERSEX
+    - NON_BINARY
+    type: string
+    x-enum-varnames:
+    - GenderEnumMale
+    - GenderEnumFemale
+    - GenderEnumTransgenderMale
+    - GenderEnumTransgenderFemale
+    - GenderEnumIntersex
+    - GenderEnumNonBinary
+  github_com_stashapp_stash-box_internal_models.HairColorEnum:
+    enum:
+    - BLONDE
+    - BRUNETTE
+    - BLACK
+    - RED
+    - AUBURN
+    - GREY
+    - BALD
+    - VARIOUS
+    - WHITE
+    - OTHER
+    type: string
+    x-enum-varnames:
+    - HairColorEnumBlonde
+    - HairColorEnumBrunette
+    - HairColorEnumBlack
+    - HairColorEnumRed
+    - HairColorEnumAuburn
+    - HairColorEnumGrey
+    - HairColorEnumBald
+    - HairColorEnumVarious
+    - HairColorEnumWhite
+    - HairColorEnumOther
+  github_com_stashapp_stash-box_internal_models.Performer:
+    properties:
+      band_size:
+        type: integer
+      birth_date:
+        type: string
+      breast_type:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.BreastTypeEnum'
+      career_end_year:
+        type: integer
+      career_start_year:
+        type: integer
+      country:
+        type: string
+      created:
+        type: string
+      cup_size:
+        type: string
+      death_date:
+        type: string
+      deleted:
+        type: boolean
+      disambiguation:
+        type: string
+      ethnicity:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.EthnicityEnum'
+      eye_color:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.EyeColorEnum'
+      gender:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.GenderEnum'
+      hair_color:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.HairColorEnum'
+      height:
+        type: integer
+      hip_size:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+      updated:
+        type: string
+      waist_size:
+        type: integer
+    type: object
+  github_com_stashapp_stash-box_internal_models.PerformerAppearanceInput:
+    properties:
+      as:
+        description: Performing as alias
+        type: string
+      performer_id:
+        type: string
+    type: object
+  github_com_stashapp_stash-box_internal_models.PerformerCreateInput:
+    properties:
+      aliases:
+        items:
+          type: string
+        type: array
+      band_size:
+        type: integer
+      birthdate:
+        type: string
+      breast_type:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.BreastTypeEnum'
+      career_end_year:
+        type: integer
+      career_start_year:
+        type: integer
+      country:
+        type: string
+      cup_size:
+        type: string
+      deathdate:
+        type: string
+      disambiguation:
+        type: string
+      draft_id:
+        type: string
+      ethnicity:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.EthnicityEnum'
+      eye_color:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.EyeColorEnum'
+      gender:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.GenderEnum'
+      hair_color:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.HairColorEnum'
+      height:
+        type: integer
+      hip_size:
+        type: integer
+      image_ids:
+        items:
+          type: string
+        type: array
+      name:
+        type: string
+      piercings:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.BodyModificationInput'
+        type: array
+      tattoos:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.BodyModificationInput'
+        type: array
+      urls:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.URL'
+        type: array
+      waist_size:
+        type: integer
+    type: object
+  github_com_stashapp_stash-box_internal_models.PerformerUpdateInput:
+    properties:
+      aliases:
+        items:
+          type: string
+        type: array
+      band_size:
+        type: integer
+      birthdate:
+        type: string
+      breast_type:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.BreastTypeEnum'
+      career_end_year:
+        type: integer
+      career_start_year:
+        type: integer
+      country:
+        type: string
+      cup_size:
+        type: string
+      deathdate:
+        type: string
+      disambiguation:
+        type: string
+      ethnicity:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.EthnicityEnum'
+      eye_color:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.EyeColorEnum'
+      gender:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.GenderEnum'
+      hair_color:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.HairColorEnum'
+      height:
+        type: integer
+      hip_size:
+        type: integer
+      id:
+        type: string
+      image_ids:
+        items:
+          type: string
+        type: array
+      name:
+        type: string
+      piercings:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.BodyModificationInput'
+        type: array
+      tattoos:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.BodyModificationInput'
+        type: array
+      urls:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.URL'
+        type: array
+      waist_size:
+        type: integer
+    type: object
+  github_com_stashapp_stash-box_internal_models.QueryExistingPerformerInput:
+    properties:
+      disambiguation:
+        type: string
+      name:
+        type: string
+      urls:
+        items:
+          type: string
+        type: array
+    type: object
+  github_com_stashapp_stash-box_internal_models.QueryExistingSceneInput:
+    properties:
+      fingerprints:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.FingerprintInput'
+        type: array
+      studio_id:
+        type: string
+      title:
+        type: string
+    type: object
+  github_com_stashapp_stash-box_internal_models.Scene:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      date:
+        type: string
+      deleted:
+        type: boolean
+      details:
+        type: string
+      director:
+        type: string
+      duration:
+        type: integer
+      id:
+        type: string
+      production_date:
+        type: string
+      studio_id:
+        $ref: '#/definitions/github_com_gofrs_uuid.NullUUID'
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  github_com_stashapp_stash-box_internal_models.SceneCreateInput:
+    properties:
+      code:
+        type: string
+      date:
+        type: string
+      details:
+        type: string
+      director:
+        type: string
+      duration:
+        type: integer
+      fingerprints:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.FingerprintEditInput'
+        type: array
+      image_ids:
+        items:
+          type: string
+        type: array
+      performers:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.PerformerAppearanceInput'
+        type: array
+      production_date:
+        type: string
+      studio_id:
+        type: string
+      tag_ids:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+      urls:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.URL'
+        type: array
+    type: object
+  github_com_stashapp_stash-box_internal_models.SceneUpdateInput:
+    properties:
+      code:
+        type: string
+      date:
+        type: string
+      details:
+        type: string
+      director:
+        type: string
+      duration:
+        type: integer
+      fingerprints:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.FingerprintEditInput'
+        type: array
+      id:
+        type: string
+      image_ids:
+        items:
+          type: string
+        type: array
+      performers:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.PerformerAppearanceInput'
+        type: array
+      production_date:
+        type: string
+      studio_id:
+        type: string
+      tag_ids:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+      urls:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.URL'
+        type: array
+    type: object
+  github_com_stashapp_stash-box_internal_models.Studio:
+    properties:
+      created_at:
+        type: string
+      deleted:
+        type: boolean
+      id:
+        type: string
+      name:
+        type: string
+      parent_studio_id:
+        $ref: '#/definitions/github_com_gofrs_uuid.NullUUID'
+      updated_at:
+        type: string
+    type: object
+  github_com_stashapp_stash-box_internal_models.StudioCreateInput:
+    properties:
+      aliases:
+        items:
+          type: string
+        type: array
+      image_ids:
+        items:
+          type: string
+        type: array
+      name:
+        type: string
+      parent_id:
+        type: string
+      urls:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.URL'
+        type: array
+    type: object
+  github_com_stashapp_stash-box_internal_models.StudioUpdateInput:
+    properties:
+      aliases:
+        items:
+          type: string
+        type: array
+      id:
+        type: string
+      image_ids:
+        items:
+          type: string
+        type: array
+      name:
+        type: string
+      parent_id:
+        type: string
+      urls:
+        items:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.URL'
+        type: array
+    type: object
+  github_com_stashapp_stash-box_internal_models.Tag:
+    properties:
+      categoryID:
+        $ref: '#/definitions/github_com_gofrs_uuid.NullUUID'
+      created:
+        type: string
+      deleted:
+        type: boolean
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      updated:
+        type: string
+    type: object
+  github_com_stashapp_stash-box_internal_models.TagCategory:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      group:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  github_com_stashapp_stash-box_internal_models.TagCategoryCreateInput:
+    properties:
+      description:
+        type: string
+      group:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.TagGroupEnum'
+      name:
+        type: string
+    type: object
+  github_com_stashapp_stash-box_internal_models.TagCategoryUpdateInput:
+    properties:
+      description:
+        type: string
+      group:
+        $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.TagGroupEnum'
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  github_com_stashapp_stash-box_internal_models.TagCreateInput:
+    properties:
+      aliases:
+        items:
+          type: string
+        type: array
+      category_id:
+        type: string
+      description:
+        type: string
+      name:
+        type: string
+    type: object
+  github_com_stashapp_stash-box_internal_models.TagGroupEnum:
+    enum:
+    - PEOPLE
+    - SCENE
+    - ACTION
+    type: string
+    x-enum-varnames:
+    - TagGroupEnumPeople
+    - TagGroupEnumScene
+    - TagGroupEnumAction
+  github_com_stashapp_stash-box_internal_models.TagUpdateInput:
+    properties:
+      aliases:
+        items:
+          type: string
+        type: array
+      category_id:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  github_com_stashapp_stash-box_internal_models.URL:
+    properties:
+      site_id:
+        type: string
+      url:
+        type: string
+    type: object
+  internal_api_rest_handlers_edit.CommentRequest:
+    properties:
+      comment:
+        description: Comment text
+        type: string
+    type: object
+  internal_api_rest_handlers_edit.VoteRequest:
+    properties:
+      vote:
+        description: ACCEPT, REJECT, ABSTAIN, IMMEDIATE_ACCEPT, IMMEDIATE_REJECT
+        type: string
+    type: object
+  internal_api_rest_handlers_performer.CreatePerformerEditRequest:
+    properties:
+      aliases:
+        items:
+          type: string
+        type: array
+      band_size:
+        type: integer
+      birthdate:
+        type: string
+      breast_type:
+        type: string
+      career_end_year:
+        type: integer
+      career_start_year:
+        type: integer
+      country:
+        type: string
+      cup_size:
+        type: string
+      deathdate:
+        type: string
+      disambiguation:
+        type: string
+      ethnicity:
+        type: string
+      eye_color:
+        type: string
+      gender:
+        type: string
+      hair_color:
+        type: string
+      height:
+        type: integer
+      hip_size:
+        type: integer
+      name:
+        type: string
+      urls:
+        items:
+          type: string
+        type: array
+      waist_size:
+        type: integer
+    type: object
+  internal_api_rest_handlers_performer.UpdatePerformerEditRequest:
+    properties:
+      aliases:
+        items:
+          type: string
+        type: array
+      band_size:
+        type: integer
+      birthdate:
+        type: string
+      breast_type:
+        type: string
+      career_end_year:
+        type: integer
+      career_start_year:
+        type: integer
+      country:
+        type: string
+      cup_size:
+        type: string
+      deathdate:
+        type: string
+      disambiguation:
+        type: string
+      ethnicity:
+        type: string
+      eye_color:
+        type: string
+      gender:
+        type: string
+      hair_color:
+        type: string
+      height:
+        type: integer
+      hip_size:
+        type: integer
+      name:
+        type: string
+      urls:
+        items:
+          type: string
+        type: array
+      waist_size:
+        type: integer
+    type: object
+  internal_api_rest_handlers_scene.CreateSceneEditRequest:
+    properties:
+      code:
+        type: string
+      date:
+        type: string
+      details:
+        type: string
+      director:
+        type: string
+      duration:
+        type: integer
+      fingerprints:
+        items:
+          $ref: '#/definitions/internal_api_rest_handlers_scene.FingerprintInput'
+        type: array
+      performer_ids:
+        items:
+          type: string
+        type: array
+      studio_id:
+        type: string
+      tag_ids:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+      urls:
+        items:
+          type: string
+        type: array
+    type: object
+  internal_api_rest_handlers_scene.FingerprintBatchRequest:
+    properties:
+      fingerprints:
+        items:
+          items:
+            $ref: '#/definitions/internal_api_rest_handlers_scene.FingerprintQuery'
+          type: array
+        type: array
+    required:
+    - fingerprints
+    type: object
+  internal_api_rest_handlers_scene.FingerprintInput:
+    properties:
+      algorithm:
+        type: string
+      duration:
+        type: integer
+      hash:
+        type: string
+    type: object
+  internal_api_rest_handlers_scene.FingerprintMatchRequest:
+    properties:
+      algorithm:
+        type: string
+      hash:
+        type: string
+    required:
+    - algorithm
+    - hash
+    type: object
+  internal_api_rest_handlers_scene.FingerprintQuery:
+    properties:
+      algorithm:
+        type: string
+      hash:
+        type: string
+    required:
+    - algorithm
+    - hash
+    type: object
+  internal_api_rest_handlers_scene.SubmitFingerprintRequest:
+    properties:
+      algorithm:
+        type: string
+      duration:
+        type: integer
+      hash:
+        type: string
+    required:
+    - algorithm
+    - hash
+    type: object
+  internal_api_rest_handlers_scene.UpdateSceneEditRequest:
+    properties:
+      code:
+        type: string
+      date:
+        type: string
+      details:
+        type: string
+      director:
+        type: string
+      duration:
+        type: integer
+      fingerprints:
+        items:
+          $ref: '#/definitions/internal_api_rest_handlers_scene.FingerprintInput'
+        type: array
+      performer_ids:
+        items:
+          type: string
+        type: array
+      studio_id:
+        type: string
+      tag_ids:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+      urls:
+        items:
+          type: string
+        type: array
+    type: object
+  internal_api_rest_handlers_studio.CreateStudioEditRequest:
+    properties:
+      name:
+        type: string
+      parent_id:
+        type: string
+      urls:
+        items:
+          type: string
+        type: array
+    type: object
+  internal_api_rest_handlers_studio.UpdateStudioEditRequest:
+    properties:
+      name:
+        type: string
+      parent_id:
+        type: string
+      urls:
+        items:
+          type: string
+        type: array
+    type: object
+  internal_api_rest_handlers_system.ConfigResponse:
+    properties:
+      is_production:
+        type: boolean
+    type: object
+  internal_api_rest_handlers_system.SuccessResponse:
+    properties:
+      data: {}
+    type: object
+  internal_api_rest_handlers_system.VersionResponse:
+    properties:
+      hash:
+        type: string
+      stamp:
+        type: string
+      version:
+        type: string
+    type: object
+  internal_api_rest_handlers_tag.CreateTagEditRequest:
+    properties:
+      category_id:
+        type: string
+      description:
+        type: string
+      name:
+        type: string
+    type: object
+  internal_api_rest_handlers_tag.UpdateTagEditRequest:
+    properties:
+      category_id:
+        type: string
+      description:
+        type: string
+      name:
+        type: string
+    type: object
+info:
+  contact:
+    name: Stash App
+    url: https://github.com/stashapp/stash-box
+  description: REST API for Stash-box metadata database
+  license:
+    name: AGPL-3.0
+    url: https://www.gnu.org/licenses/agpl-3.0.en.html
+  termsOfService: http://swagger.io/terms/
+  title: Stash-box REST API
+  version: "1.0"
+paths:
+  /edits:
+    get:
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 25
+        description: Items per page
+        in: query
+        name: per_page
+        type: integer
+      - description: Filter by status (PENDING, ACCEPTED, REJECTED, etc.)
+        in: query
+        name: status
+        type: string
+      - description: Filter by operation (CREATE, MODIFY, MERGE, DESTROY)
+        in: query
+        name: operation
+        type: string
+      - description: Filter by target type (SCENE, STUDIO, PERFORMER, TAG)
+        in: query
+        name: target_type
+        type: string
+      - description: Filter by creator user ID
+        in: query
+        name: user_id
+        type: string
+      - description: Sort field (created_at, updated_at, closed_at)
+        in: query
+        name: sort
+        type: string
+      - description: Sort direction (asc, desc)
+        in: query
+        name: direction
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.PaginatedResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Edit'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: List edits with filters
+      tags:
+      - edits
+  /edits/{id}:
+    get:
+      parameters:
+      - description: Edit ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Edit'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Get edit by ID
+      tags:
+      - edits
+  /edits/{id}/apply:
+    post:
+      parameters:
+      - description: Edit ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Edit'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Apply an edit
+      tags:
+      - edits
+  /edits/{id}/cancel:
+    post:
+      parameters:
+      - description: Edit ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Edit'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Cancel an edit
+      tags:
+      - edits
+  /edits/{id}/comments:
+    post:
+      parameters:
+      - description: Edit ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Comment data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api_rest_handlers_edit.CommentRequest'
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Edit'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Comment on an edit
+      tags:
+      - edits
+  /edits/{id}/vote:
+    post:
+      parameters:
+      - description: Edit ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Vote data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api_rest_handlers_edit.VoteRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Edit'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Vote on an edit
+      tags:
+      - edits
+  /performers:
+    get:
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 25
+        description: Items per page
+        in: query
+        name: per_page
+        type: integer
+      - description: Filter by name
+        in: query
+        name: name
+        type: string
+      - description: Filter by gender
+        in: query
+        name: gender
+        type: string
+      - description: Filter by ethnicity
+        in: query
+        name: ethnicity
+        type: string
+      - description: Filter by country
+        in: query
+        name: country
+        type: string
+      - description: Filter by eye color
+        in: query
+        name: eye_color
+        type: string
+      - description: Filter by hair color
+        in: query
+        name: hair_color
+        type: string
+      - description: Minimum height in cm
+        in: query
+        name: height_min
+        type: integer
+      - description: Maximum height in cm
+        in: query
+        name: height_max
+        type: integer
+      - description: Minimum age
+        in: query
+        name: age_min
+        type: integer
+      - description: Maximum age
+        in: query
+        name: age_max
+        type: integer
+      - description: Sort field (name, birthdate, scene_count, created_at, updated_at)
+        in: query
+        name: sort
+        type: string
+      - description: Sort direction (asc, desc)
+        in: query
+        name: direction
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.PaginatedResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Performer'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: List performers with filters
+      tags:
+      - performers
+    post:
+      parameters:
+      - description: Performer data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.PerformerCreateInput'
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Performer'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Create a new performer
+      tags:
+      - performers
+  /performers/{id}:
+    delete:
+      parameters:
+      - description: Performer ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Delete a performer
+      tags:
+      - performers
+    get:
+      parameters:
+      - description: Performer ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Performer'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Get performer by ID
+      tags:
+      - performers
+    put:
+      parameters:
+      - description: Performer ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated performer data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.PerformerUpdateInput'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Performer'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Update a performer
+      tags:
+      - performers
+  /performers/{id}/edits:
+    post:
+      parameters:
+      - description: Performer ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Performer edit data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api_rest_handlers_performer.CreatePerformerEditRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Edit'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Create a new performer edit
+      tags:
+      - performers
+  /performers/{id}/favorite:
+    delete:
+      parameters:
+      - description: Performer ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  additionalProperties:
+                    type: boolean
+                  type: object
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Unfavorite a performer
+      tags:
+      - performers
+    post:
+      parameters:
+      - description: Performer ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  additionalProperties:
+                    type: boolean
+                  type: object
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Favorite a performer
+      tags:
+      - performers
+  /performers/check-existing:
+    post:
+      parameters:
+      - description: Query criteria
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.QueryExistingPerformerInput'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Performer'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Check for existing performers
+      tags:
+      - performers
+  /performers/edits/{editId}:
+    put:
+      parameters:
+      - description: Edit ID (UUID)
+        in: path
+        name: editId
+        required: true
+        type: string
+      - description: Updated performer edit data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api_rest_handlers_performer.UpdatePerformerEditRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Edit'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Update a pending performer edit
+      tags:
+      - performers
+  /performers/search:
+    get:
+      parameters:
+      - description: Search term
+        in: query
+        name: term
+        required: true
+        type: string
+      - default: 25
+        description: Result limit
+        in: query
+        name: limit
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Performer'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Search performers by term
+      tags:
+      - performers
+  /scenes:
+    get:
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 25
+        description: Items per page
+        in: query
+        name: per_page
+        type: integer
+      - description: Filter by title
+        in: query
+        name: title
+        type: string
+      - description: Filter by studio ID
+        in: query
+        name: studio_id
+        type: string
+      - description: Comma-separated performer IDs
+        in: query
+        name: performer_ids
+        type: string
+      - description: Comma-separated tag IDs
+        in: query
+        name: tag_ids
+        type: string
+      - description: Filter by date (YYYY-MM-DD)
+        in: query
+        name: date
+        type: string
+      - description: Filter by date from (YYYY-MM-DD)
+        in: query
+        name: date_from
+        type: string
+      - description: Filter by date to (YYYY-MM-DD)
+        in: query
+        name: date_to
+        type: string
+      - description: Sort field (date, title, created_at, updated_at)
+        in: query
+        name: sort
+        type: string
+      - description: Sort direction (asc, desc)
+        in: query
+        name: direction
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.PaginatedResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Scene'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: List scenes with filters
+      tags:
+      - scenes
+    post:
+      parameters:
+      - description: Scene data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.SceneCreateInput'
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Scene'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Create a new scene
+      tags:
+      - scenes
+  /scenes/{id}:
+    delete:
+      parameters:
+      - description: Scene ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Delete a scene
+      tags:
+      - scenes
+    get:
+      parameters:
+      - description: Scene ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Scene'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Get scene by ID
+      tags:
+      - scenes
+    put:
+      parameters:
+      - description: Scene ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated scene data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.SceneUpdateInput'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Scene'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Update a scene
+      tags:
+      - scenes
+  /scenes/{id}/edits:
+    post:
+      parameters:
+      - description: Scene ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Scene edit data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api_rest_handlers_scene.CreateSceneEditRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Edit'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Create a new scene edit
+      tags:
+      - scenes
+  /scenes/{id}/fingerprints:
+    post:
+      parameters:
+      - description: Scene ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Fingerprint to submit
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api_rest_handlers_scene.SubmitFingerprintRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  additionalProperties:
+                    type: boolean
+                  type: object
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Submit a fingerprint for a scene
+      tags:
+      - scenes
+  /scenes/check-existing:
+    post:
+      parameters:
+      - description: Query criteria
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.QueryExistingSceneInput'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Scene'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Check for existing scenes
+      tags:
+      - scenes
+  /scenes/edits/{editId}:
+    put:
+      parameters:
+      - description: Edit ID (UUID)
+        in: path
+        name: editId
+        required: true
+        type: string
+      - description: Updated scene edit data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api_rest_handlers_scene.UpdateSceneEditRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Edit'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Update a pending scene edit
+      tags:
+      - scenes
+  /scenes/fingerprints/batch:
+    post:
+      parameters:
+      - description: Array of fingerprint arrays (one array per scene)
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api_rest_handlers_scene.FingerprintBatchRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  items:
+                    items:
+                      $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Scene'
+                    type: array
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "413":
+          description: Request Entity Too Large
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Match multiple fingerprints in batch (Plex critical)
+      tags:
+      - scenes
+  /scenes/fingerprints/match:
+    post:
+      parameters:
+      - description: Fingerprint data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api_rest_handlers_scene.FingerprintMatchRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Scene'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Match a single fingerprint
+      tags:
+      - scenes
+  /scenes/search:
+    get:
+      parameters:
+      - description: Search term
+        in: query
+        name: term
+        required: true
+        type: string
+      - default: 25
+        description: Result limit
+        in: query
+        name: limit
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Scene'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Search scenes by term
+      tags:
+      - scenes
+  /studios:
+    get:
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 25
+        description: Items per page
+        in: query
+        name: per_page
+        type: integer
+      - description: Filter by name
+        in: query
+        name: name
+        type: string
+      - description: Sort field (name, created_at, updated_at)
+        in: query
+        name: sort
+        type: string
+      - description: Sort direction (asc, desc)
+        in: query
+        name: direction
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.PaginatedResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Studio'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: List studios with filters
+      tags:
+      - studios
+    post:
+      parameters:
+      - description: Studio data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.StudioCreateInput'
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Studio'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Create a new studio
+      tags:
+      - studios
+  /studios/{id}:
+    delete:
+      parameters:
+      - description: Studio ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Delete a studio
+      tags:
+      - studios
+    get:
+      parameters:
+      - description: Studio ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Studio'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Get studio by ID
+      tags:
+      - studios
+    put:
+      parameters:
+      - description: Studio ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated studio data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.StudioUpdateInput'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Studio'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Update a studio
+      tags:
+      - studios
+  /studios/{id}/edits:
+    post:
+      parameters:
+      - description: Studio ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Studio edit data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api_rest_handlers_studio.CreateStudioEditRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Edit'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Create a new studio edit
+      tags:
+      - studios
+  /studios/{id}/favorite:
+    delete:
+      parameters:
+      - description: Studio ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  additionalProperties:
+                    type: boolean
+                  type: object
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Unfavorite a studio
+      tags:
+      - studios
+    post:
+      parameters:
+      - description: Studio ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  additionalProperties:
+                    type: boolean
+                  type: object
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Favorite a studio
+      tags:
+      - studios
+  /studios/by-name/{name}:
+    get:
+      parameters:
+      - description: Studio name
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Studio'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Get studio by name
+      tags:
+      - studios
+  /studios/edits/{editId}:
+    put:
+      parameters:
+      - description: Edit ID (UUID)
+        in: path
+        name: editId
+        required: true
+        type: string
+      - description: Updated studio edit data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api_rest_handlers_studio.UpdateStudioEditRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Edit'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Update a pending studio edit
+      tags:
+      - studios
+  /studios/search:
+    get:
+      parameters:
+      - description: Search term
+        in: query
+        name: term
+        required: true
+        type: string
+      - default: 25
+        description: Result limit
+        in: query
+        name: limit
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Studio'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Search studios by term
+      tags:
+      - studios
+  /system/config:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/internal_api_rest_handlers_system.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/internal_api_rest_handlers_system.ConfigResponse'
+              type: object
+      summary: Get instance configuration
+      tags:
+      - system
+  /system/version:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/internal_api_rest_handlers_system.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/internal_api_rest_handlers_system.VersionResponse'
+              type: object
+      summary: Get version information
+      tags:
+      - system
+  /tags:
+    get:
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 25
+        description: Items per page
+        in: query
+        name: per_page
+        type: integer
+      - description: Filter by name
+        in: query
+        name: name
+        type: string
+      - description: Filter by category ID
+        in: query
+        name: category_id
+        type: string
+      - description: Sort field (name, created_at, updated_at)
+        in: query
+        name: sort
+        type: string
+      - description: Sort direction (asc, desc)
+        in: query
+        name: direction
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.PaginatedResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Tag'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: List tags with filters
+      tags:
+      - tags
+    post:
+      parameters:
+      - description: Tag data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.TagCreateInput'
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Tag'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Create a new tag
+      tags:
+      - tags
+  /tags/{id}:
+    delete:
+      parameters:
+      - description: Tag ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Delete a tag
+      tags:
+      - tags
+    get:
+      parameters:
+      - description: Tag ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Tag'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Get tag by ID
+      tags:
+      - tags
+    put:
+      parameters:
+      - description: Tag ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated tag data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.TagUpdateInput'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Tag'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Update a tag
+      tags:
+      - tags
+  /tags/{id}/edits:
+    post:
+      parameters:
+      - description: Tag ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Tag edit data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api_rest_handlers_tag.CreateTagEditRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Edit'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Create a new tag edit
+      tags:
+      - tags
+  /tags/by-alias/{alias}:
+    get:
+      parameters:
+      - description: Tag alias
+        in: path
+        name: alias
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Tag'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Get tag by alias
+      tags:
+      - tags
+  /tags/by-name/{name}:
+    get:
+      parameters:
+      - description: Tag name
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Tag'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Get tag by name
+      tags:
+      - tags
+  /tags/categories:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.TagCategory'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: List all tag categories
+      tags:
+      - tag-categories
+    post:
+      parameters:
+      - description: Category data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.TagCategoryCreateInput'
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.TagCategory'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Create a new tag category
+      tags:
+      - tag-categories
+  /tags/categories/{id}:
+    delete:
+      parameters:
+      - description: Category ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Delete a tag category
+      tags:
+      - tag-categories
+    get:
+      parameters:
+      - description: Category ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.TagCategory'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Get tag category by ID
+      tags:
+      - tag-categories
+    put:
+      parameters:
+      - description: Category ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated category data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.TagCategoryUpdateInput'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.TagCategory'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Update a tag category
+      tags:
+      - tag-categories
+  /tags/edits/{editId}:
+    put:
+      parameters:
+      - description: Edit ID (UUID)
+        in: path
+        name: editId
+        required: true
+        type: string
+      - description: Updated tag edit data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/internal_api_rest_handlers_tag.UpdateTagEditRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Edit'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Update a pending tag edit
+      tags:
+      - tags
+  /tags/search:
+    get:
+      parameters:
+      - description: Search term
+        in: query
+        name: term
+        required: true
+        type: string
+      - default: 25
+        description: Result limit
+        in: query
+        name: limit
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.SuccessResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_stashapp_stash-box_internal_models.Tag'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_stashapp_stash-box_internal_api_rest_handlers.ErrorResponse'
+      security:
+      - ApiKeyAuth SessionAuth: []
+      summary: Search tags by term
+      tags:
+      - tags
+securityDefinitions:
+  ApiKeyAuth:
+    description: API Key authentication
+    in: header
+    name: ApiKey
+    type: apiKey
+  SessionAuth:
+    description: Session cookie authentication
+    in: cookie
+    name: stashbox
+    type: apiKey
+swagger: "2.0"
