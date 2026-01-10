@@ -27,6 +27,7 @@ import {
   ROUTE_SITES,
   ROUTE_DRAFTS,
   ROUTE_NOTIFICATIONS,
+  ROUTE_SETTINGS,
 } from "src/constants/route";
 import AuthContext from "./context";
 
@@ -106,9 +107,14 @@ const Main: FC<Props> = ({ children }) => {
           {contextValue.user.name}
         </NavLink>
         {isAdmin(user) && (
-          <NavLink to={ROUTE_USERS} className="nav-link">
-            Users
-          </NavLink>
+          <>
+            <NavLink to={ROUTE_USERS} className="nav-link">
+              Users
+            </NavLink>
+            <NavLink to={ROUTE_SETTINGS} className="nav-link">
+              Settings
+            </NavLink>
+          </>
         )}
         <NavLink
           to={ROUTE_LOGOUT}

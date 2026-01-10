@@ -1,5 +1,5 @@
-query Config {
-  getConfig {
+mutation UpdateConfig($input: ConfigUpdateInput!) {
+  updateConfig(input: $input) {
     title
     host_url
     require_invite
