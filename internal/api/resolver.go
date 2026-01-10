@@ -119,18 +119,79 @@ func (r *queryResolver) Version(ctx context.Context) (*models.Version, error) {
 }
 
 func (r *queryResolver) GetConfig(ctx context.Context) (*models.StashBoxConfig, error) {
+	s3Config := config.GetS3Config()
+	imageResizeConfig := config.GetImageResizeConfig()
+
 	return &models.StashBoxConfig{
+		Title:                      config.GetTitle(),
 		HostURL:                    config.GetHostURL(),
 		RequireInvite:              config.GetRequireInvite(),
 		RequireActivation:          config.GetRequireActivation(),
+		ActivationExpiry:           int(config.GetActivationExpiry().Seconds()),
+		EmailCooldown:              int(config.GetEmailCooldown().Seconds()),
+		DefaultUserRoles:           config.GetDefaultUserRoles(),
 		VotePromotionThreshold:     config.GetVotePromotionThreshold(),
 		VoteApplicationThreshold:   config.GetVoteApplicationThreshold(),
 		VotingPeriod:               config.GetVotingPeriod(),
 		MinDestructiveVotingPeriod: config.GetMinDestructiveVotingPeriod(),
 		VoteCronInterval:           config.GetVoteCronInterval(),
 		GuidelinesURL:              config.GetGuidelinesURL(),
-		RequireSceneDraft:          config.GetRequireSceneDraft(),
 		EditUpdateLimit:            config.GetEditUpdateLimit(),
+		RequireSceneDraft:          config.GetRequireSceneDraft(),
 		RequireTagRole:             config.GetRequireTagRole(),
+
+		// Email settings
+		EmailHost:     config.GetEmailHost(),
+		EmailPort:     config.GetEmailPort(),
+		EmailUser:     config.GetEmailUser(),
+		EmailPassword: config.GetEmailPassword(),
+		EmailFrom:     config.GetEmailFrom(),
+
+		// Image settings
+		ImageLocation:    config.GetImageLocation(),
+		ImageBackend:     string(config.GetImageBackend()),
+		ImageJpegQuality: config.GetImageJpegQuality(),
+		ImageMaxSize:     config.GetImageMaxSize(),
+
+		// Image resizing settings
+		ImageResizingEnabled:   imageResizeConfig.Enabled,
+		ImageResizingCachePath: imageResizeConfig.CachePath,
+		ImageResizingMinSize:   &imageResizeConfig.MinSize,
+
+		// S3 settings
+		S3Endpoint:      s3Config.Endpoint,
+		S3Bucket:        s3Config.Bucket,
+		S3AccessKey:     s3Config.AccessKey,
+		S3Secret:        s3Config.Secret,
+		S3MaxDimension:  &s3Config.MaxDimension,
+
+		// Database settings
+		PostgresMaxOpenConns:    config.GetMaxOpenConns(),
+		PostgresMaxIdleConns:    config.GetMaxIdleConns(),
+		PostgresConnMaxLifetime: config.GetConnMaxLifetime(),
+
+		// Other settings
+		PhashDistance:  config.GetPHashDistance(),
+		FaviconPath:    getFaviconPathString(),
+		DraftTimeLimit: config.GetDraftTimeLimit(),
+		ProfilerPort:   getProfilerPortInt(),
+		UserLogFile:    config.GetUserLogFile(),
+		Csp:            config.GetCSP(),
 	}, nil
+}
+
+func getFaviconPathString() string {
+	path, err := config.GetFaviconPath()
+	if err != nil || path == nil {
+		return ""
+	}
+	return *path
+}
+
+func getProfilerPortInt() int {
+	port := config.GetProfilerPort()
+	if port == nil {
+		return 0
+	}
+	return *port
 }

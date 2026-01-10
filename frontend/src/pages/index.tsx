@@ -20,6 +20,7 @@ import {
   ROUTE_SITES,
   ROUTE_DRAFTS,
   ROUTE_NOTIFICATIONS,
+  ROUTE_SETTINGS,
 } from "src/constants/route";
 
 import Home from "src/pages/home";
@@ -40,6 +41,7 @@ import Version from "src/pages/version";
 import Sites from "src/pages/sites";
 import Drafts from "src/pages/drafts";
 import Notifications from "src/pages/notifications";
+import Settings from "src/pages/settings";
 
 const Pages: FC = () => (
   <Routes>
@@ -66,6 +68,7 @@ const Pages: FC = () => (
             <Route path={`${ROUTE_SITES}/*`} element={<Sites />} />
             <Route path={`${ROUTE_DRAFTS}/*`} element={<Drafts />} />
             <Route path={ROUTE_NOTIFICATIONS} element={<Notifications />} />
+            <Route path={ROUTE_SETTINGS} element={<Settings />} />
           </Routes>
         </div>
       }
