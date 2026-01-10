@@ -65,8 +65,50 @@ const Settings: FC = () => {
   } = useForm<ConfigFormData>({
     defaultValues: data?.getConfig
       ? {
-          ...data.getConfig,
+          title: data.getConfig.title,
+          host_url: data.getConfig.host_url,
+          require_invite: data.getConfig.require_invite,
+          require_activation: data.getConfig.require_activation,
+          activation_expiry: data.getConfig.activation_expiry,
+          email_cooldown: data.getConfig.email_cooldown,
           default_user_roles: data.getConfig.default_user_roles.join(", "),
+          vote_promotion_threshold:
+            data.getConfig.vote_promotion_threshold ?? 0,
+          vote_application_threshold: data.getConfig.vote_application_threshold,
+          voting_period: data.getConfig.voting_period,
+          min_destructive_voting_period:
+            data.getConfig.min_destructive_voting_period,
+          vote_cron_interval: data.getConfig.vote_cron_interval,
+          guidelines_url: data.getConfig.guidelines_url,
+          edit_update_limit: data.getConfig.edit_update_limit,
+          require_scene_draft: data.getConfig.require_scene_draft,
+          require_tag_role: data.getConfig.require_tag_role,
+          email_host: data.getConfig.email_host,
+          email_port: data.getConfig.email_port,
+          email_user: data.getConfig.email_user,
+          email_password: data.getConfig.email_password,
+          email_from: data.getConfig.email_from,
+          image_location: data.getConfig.image_location,
+          image_backend: data.getConfig.image_backend,
+          image_jpeg_quality: data.getConfig.image_jpeg_quality,
+          image_max_size: data.getConfig.image_max_size ?? 0,
+          image_resizing_enabled: data.getConfig.image_resizing_enabled,
+          image_resizing_cache_path: data.getConfig.image_resizing_cache_path,
+          image_resizing_min_size: data.getConfig.image_resizing_min_size ?? 0,
+          s3_endpoint: data.getConfig.s3_endpoint,
+          s3_bucket: data.getConfig.s3_bucket,
+          s3_access_key: data.getConfig.s3_access_key,
+          s3_secret: data.getConfig.s3_secret,
+          s3_max_dimension: data.getConfig.s3_max_dimension ?? 0,
+          postgres_max_open_conns: data.getConfig.postgres_max_open_conns,
+          postgres_max_idle_conns: data.getConfig.postgres_max_idle_conns,
+          postgres_conn_max_lifetime: data.getConfig.postgres_conn_max_lifetime,
+          phash_distance: data.getConfig.phash_distance,
+          favicon_path: data.getConfig.favicon_path,
+          draft_time_limit: data.getConfig.draft_time_limit,
+          profiler_port: data.getConfig.profiler_port,
+          user_log_file: data.getConfig.user_log_file,
+          csp: data.getConfig.csp,
         }
       : undefined,
   });
@@ -94,7 +136,9 @@ const Settings: FC = () => {
       );
     } catch (error) {
       setErrorMessage(
-        error instanceof Error ? error.message : "Failed to update configuration",
+        error instanceof Error
+          ? error.message
+          : "Failed to update configuration",
       );
     }
   };
@@ -120,7 +164,9 @@ const Settings: FC = () => {
               placeholder="Stash-Box"
               {...register("title")}
             />
-            <Form.Text>Title of the instance, used in the page title.</Form.Text>
+            <Form.Text>
+              Title of the instance, used in the page title.
+            </Form.Text>
           </Form.Group>
 
           <Form.Group as={Col} md={6} className="mb-3">
@@ -215,7 +261,8 @@ const Settings: FC = () => {
               {...register("activation_expiry", { valueAsNumber: true })}
             />
             <Form.Text>
-              Time after which an activation key expires. (Default: 7200 = 2 hours)
+              Time after which an activation key expires. (Default: 7200 = 2
+              hours)
             </Form.Text>
           </Form.Group>
 
@@ -226,8 +273,8 @@ const Settings: FC = () => {
               {...register("email_cooldown", { valueAsNumber: true })}
             />
             <Form.Text>
-              Time a user must wait before submitting another activation request.
-              (Default: 300 = 5 minutes)
+              Time a user must wait before submitting another activation
+              request. (Default: 300 = 5 minutes)
             </Form.Text>
           </Form.Group>
         </Row>
@@ -257,7 +304,9 @@ const Settings: FC = () => {
                 />
               )}
             />
-            <Form.Text>Whether to require the EditTag role to edit tags.</Form.Text>
+            <Form.Text>
+              Whether to require the EditTag role to edit tags.
+            </Form.Text>
           </Form.Group>
         </Row>
 
@@ -273,8 +322,8 @@ const Settings: FC = () => {
               {...register("vote_promotion_threshold", { valueAsNumber: true })}
             />
             <Form.Text>
-              Number of approved edits before a user automatically gets VOTE role.
-              Leave empty to disable.
+              Number of approved edits before a user automatically gets VOTE
+              role. Leave empty to disable.
             </Form.Text>
           </Form.Group>
 
@@ -282,11 +331,13 @@ const Settings: FC = () => {
             <Form.Label>Vote Application Threshold</Form.Label>
             <Form.Control
               type="number"
-              {...register("vote_application_threshold", { valueAsNumber: true })}
+              {...register("vote_application_threshold", {
+                valueAsNumber: true,
+              })}
             />
             <Form.Text>
-              Number of same votes required for immediate application of an edit.
-              (Default: 3)
+              Number of same votes required for immediate application of an
+              edit. (Default: 3)
             </Form.Text>
           </Form.Group>
 
@@ -297,7 +348,8 @@ const Settings: FC = () => {
               {...register("edit_update_limit", { valueAsNumber: true })}
             />
             <Form.Text>
-              Number of times an edit can be updated by the creator. (Default: 1)
+              Number of times an edit can be updated by the creator. (Default:
+              1)
             </Form.Text>
           </Form.Group>
         </Row>
@@ -348,7 +400,10 @@ const Settings: FC = () => {
         <Row>
           <Form.Group as={Col} md={6} className="mb-3">
             <Form.Label>Email Host</Form.Label>
-            <Form.Control placeholder="smtp.example.com" {...register("email_host")} />
+            <Form.Control
+              placeholder="smtp.example.com"
+              {...register("email_host")}
+            />
             <Form.Text>
               Address of the SMTP server. Required to send emails for activation
               and recovery.
@@ -370,10 +425,7 @@ const Settings: FC = () => {
         <Row>
           <Form.Group as={Col} md={4} className="mb-3">
             <Form.Label>Email User</Form.Label>
-            <Form.Control
-              placeholder="username"
-              {...register("email_user")}
-            />
+            <Form.Control placeholder="username" {...register("email_user")} />
             <Form.Text>Username for the SMTP server (optional).</Form.Text>
           </Form.Group>
 
@@ -408,7 +460,9 @@ const Settings: FC = () => {
               placeholder="/path/to/images"
               {...register("image_location")}
             />
-            <Form.Text>Path to store images, for local image storage.</Form.Text>
+            <Form.Text>
+              Path to store images, for local image storage.
+            </Form.Text>
           </Form.Group>
 
           <Form.Group as={Col} md={6} className="mb-3">
@@ -440,7 +494,8 @@ const Settings: FC = () => {
               {...register("image_max_size", { valueAsNumber: true })}
             />
             <Form.Text>
-              Max size of image if no size is specified. Omit to return full size.
+              Max size of image if no size is specified. Omit to return full
+              size.
             </Form.Text>
           </Form.Group>
         </Row>
@@ -459,7 +514,9 @@ const Settings: FC = () => {
                 />
               )}
             />
-            <Form.Text>Whether to resize images shown in the frontend.</Form.Text>
+            <Form.Text>
+              Whether to resize images shown in the frontend.
+            </Form.Text>
           </Form.Group>
 
           <Form.Group as={Col} md={4} className="mb-3">
@@ -491,8 +548,8 @@ const Settings: FC = () => {
               {...register("favicon_path")}
             />
             <Form.Text>
-              Location where favicons for linked sites should be stored. Leave empty
-              to disable.
+              Location where favicons for linked sites should be stored. Leave
+              empty to disable.
             </Form.Text>
           </Form.Group>
         </Row>
@@ -508,7 +565,9 @@ const Settings: FC = () => {
               placeholder="s3.amazonaws.com"
               {...register("s3_endpoint")}
             />
-            <Form.Text>Hostname to S3 endpoint used for image storage.</Form.Text>
+            <Form.Text>
+              Hostname to S3 endpoint used for image storage.
+            </Form.Text>
           </Form.Group>
 
           <Form.Group as={Col} md={6} className="mb-3">
@@ -538,8 +597,8 @@ const Settings: FC = () => {
               {...register("s3_max_dimension", { valueAsNumber: true })}
             />
             <Form.Text>
-              If set, a resized copy will be created for any image whose dimensions
-              exceed this number.
+              If set, a resized copy will be created for any image whose
+              dimensions exceed this number.
             </Form.Text>
           </Form.Group>
         </Row>
@@ -568,8 +627,8 @@ const Settings: FC = () => {
               {...register("postgres_max_idle_conns", { valueAsNumber: true })}
             />
             <Form.Text>
-              Maximum number of concurrent idle database connections. (Default: 0 =
-              unlimited)
+              Maximum number of concurrent idle database connections. (Default:
+              0 = unlimited)
             </Form.Text>
           </Form.Group>
 
@@ -577,11 +636,13 @@ const Settings: FC = () => {
             <Form.Label>Connection Max Lifetime (minutes)</Form.Label>
             <Form.Control
               type="number"
-              {...register("postgres_conn_max_lifetime", { valueAsNumber: true })}
+              {...register("postgres_conn_max_lifetime", {
+                valueAsNumber: true,
+              })}
             />
             <Form.Text>
-              Maximum lifetime in minutes before a connection is released. (Default:
-              0 = unlimited)
+              Maximum lifetime in minutes before a connection is released.
+              (Default: 0 = unlimited)
             </Form.Text>
           </Form.Group>
         </Row>
@@ -642,8 +703,13 @@ const Settings: FC = () => {
 
           <Form.Group as={Col} md={6} className="mb-3">
             <Form.Label>Content Security Policy</Form.Label>
-            <Form.Control placeholder="default-src 'self'" {...register("csp")} />
-            <Form.Text>Contents of the Content-Security-Policy header.</Form.Text>
+            <Form.Control
+              placeholder="default-src 'self'"
+              {...register("csp")}
+            />
+            <Form.Text>
+              Contents of the Content-Security-Policy header.
+            </Form.Text>
           </Form.Group>
         </Row>
 

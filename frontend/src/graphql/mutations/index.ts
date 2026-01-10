@@ -140,6 +140,9 @@ import {
   MarkNotificationReadDocument,
   type MarkNotificationReadMutationVariables,
   type MeQuery,
+  type UpdateConfigMutation,
+  type UpdateConfigMutationVariables,
+  UpdateConfigDocument,
 } from "../types";
 
 export const useActivateUser = (
@@ -481,3 +484,10 @@ export const useMarkNotificationRead = (
       }
     },
   });
+
+export const useUpdateConfig = (
+  options?: MutationHookOptions<
+    UpdateConfigMutation,
+    UpdateConfigMutationVariables
+  >,
+) => useMutation(UpdateConfigDocument, options);
