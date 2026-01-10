@@ -1,113 +1,14 @@
 type StashBoxConfig {
-  title: String!
   host_url: String!
   require_invite: Boolean!
   require_activation: Boolean!
-  activation_expiry: Int!
-  email_cooldown: Int!
-  default_user_roles: [String!]!
   vote_promotion_threshold: Int
   vote_application_threshold: Int!
   voting_period: Int!
   min_destructive_voting_period: Int!
   vote_cron_interval: String!
   guidelines_url: String!
-  edit_update_limit: Int!
   require_scene_draft: Boolean!
+  edit_update_limit: Int!
   require_tag_role: Boolean!
-
-  # Email settings
-  email_host: String!
-  email_port: Int!
-  email_user: String!
-  email_password: String!
-  email_from: String!
-
-  # Image settings
-  image_location: String!
-  image_backend: String!
-  image_jpeg_quality: Int!
-  image_max_size: Int
-
-  # Image resizing settings
-  image_resizing_enabled: Boolean!
-  image_resizing_cache_path: String!
-  image_resizing_min_size: Int
-
-  # S3 settings
-  s3_endpoint: String!
-  s3_bucket: String!
-  s3_access_key: String!
-  s3_secret: String!
-  s3_max_dimension: Int
-
-  # Database settings
-  postgres_max_open_conns: Int!
-  postgres_max_idle_conns: Int!
-  postgres_conn_max_lifetime: Int!
-
-  # Other settings
-  phash_distance: Int!
-  favicon_path: String!
-  draft_time_limit: Int!
-  profiler_port: Int!
-  user_log_file: String!
-  csp: String!
-}
-
-input ConfigUpdateInput {
-  title: String
-  host_url: String
-  require_invite: Boolean
-  require_activation: Boolean
-  activation_expiry: Int
-  email_cooldown: Int
-  default_user_roles: [String!]
-  vote_promotion_threshold: Int
-  vote_application_threshold: Int
-  voting_period: Int
-  min_destructive_voting_period: Int
-  vote_cron_interval: String
-  guidelines_url: String
-  edit_update_limit: Int
-  require_scene_draft: Boolean
-  require_tag_role: Boolean
-
-  # Email settings
-  email_host: String
-  email_port: Int
-  email_user: String
-  email_password: String
-  email_from: String
-
-  # Image settings
-  image_location: String
-  image_backend: String
-  image_jpeg_quality: Int
-  image_max_size: Int
-
-  # Image resizing settings
-  image_resizing_enabled: Boolean
-  image_resizing_cache_path: String
-  image_resizing_min_size: Int
-
-  # S3 settings
-  s3_endpoint: String
-  s3_bucket: String
-  s3_access_key: String
-  s3_secret: String
-  s3_max_dimension: Int
-
-  # Database settings
-  postgres_max_open_conns: Int
-  postgres_max_idle_conns: Int
-  postgres_conn_max_lifetime: Int
-
-  # Other settings
-  phash_distance: Int
-  favicon_path: String
-  draft_time_limit: Int
-  profiler_port: Int
-  user_log_file: String
-  csp: String
 }

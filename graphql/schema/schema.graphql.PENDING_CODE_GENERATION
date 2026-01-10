@@ -191,6 +191,9 @@ type Mutation {
   markNotificationsRead(notification: MarkNotificationReadInput): Boolean! @hasRole(role: READ)
   """Update notification subscriptions for current user."""
   updateNotificationSubscriptions(subscriptions: [NotificationEnum!]!): Boolean! @hasRole(role: READ)
+
+  """Update configuration settings"""
+  updateConfig(input: ConfigUpdateInput!): StashBoxConfig! @hasRole(role: ADMIN)
 }
 
 schema {
